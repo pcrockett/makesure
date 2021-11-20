@@ -587,7 +587,7 @@ function currentTimeMillis(   res) {
 }
 
 function selfUpdate(   url, tmp, err, newVer) {
-  url = "https://raw.githubusercontent.com/xonixx/makesure/main/makesure?token=" rand()
+  url = "https://github.com/pcrockett/makesure/raw/phil-release/makesure?token=" rand()
   tmp = executeGetLine("mktemp /tmp/makesure_new.XXXXXXXXXX")
   err = dl(url, tmp)
   if (!err && !ok("chmod +x " tmp)) err = "can't chmod +x " tmp
@@ -654,7 +654,7 @@ function dl(url, dest,    verbose) {
     if (!ok("wget " (verbose ? "" : "-q") " " quoteArg(url) " -O" quoteArg(dest)))
       return "error with wget"
   } else if (commandExists("curl")) {
-    if (!ok("curl " (verbose ? "" : "-s") " " quoteArg(url) " -o " quoteArg(dest)))
+    if (!ok("curl " (verbose ? "" : "-s") " --location " quoteArg(url) " -o " quoteArg(dest)))
       return "error with curl"
   } else return "wget/curl no found"
 }
