@@ -4,6 +4,9 @@
 @define B=${A}bbb
 C=ccc
 
+private_var="defined in prelude"
+@define D="${private_var}"
+
 @goal testA
 echo A=$A
 
@@ -12,6 +15,10 @@ echo B=$B
 
 @goal testC
 echo C=$C
+
+@goal testD
+echo private_var=$private_var
+echo D=$D
 
 @goal testABC
 @depends_on testA testB testC
